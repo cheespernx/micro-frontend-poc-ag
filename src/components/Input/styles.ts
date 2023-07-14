@@ -22,7 +22,7 @@ export const InputLabel = styled.label<Props>`
   margin-left: 1rem;
 
   top: -.4rem;
-  left: .8rem;
+  left: .4rem;
   
   font-weight: 500;
   z-index: 10;
