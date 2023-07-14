@@ -8,17 +8,30 @@ import { UserInfo } from "./interfaces/user.interface";
 function App() {
 
   const [ userInfo, setUserInfo ] = useState<UserInfo>();
-
-  let parent: MessageEventSource | null = null;
   
-   window.addEventListener("message", ({ data, source }) => {
-    if (parent === null) {
-      parent = source;
-    }
-
+  window.addEventListener("message", ({ data, source }) => {
     if (data) setUserInfo(data);
-     console.log(data);
   });
+
+  const handleInputValueChange = (key: string, value: string) => {
+    setUserInfo((prevState) => {
+      return {
+        ...prevState,
+        [key]: value,
+      };
+    });
+  };
+
+  function updateUserInfo() {
+    const response = {
+      event: "userInfoUpdate",
+      userInfo
+    };
+
+    if (window && window.parent) {
+      window.parent.postMessage(response, '*');
+    }
+  }
 
   return (
     <div className="MinhaContaContainer">
@@ -38,6 +51,7 @@ function App() {
                     disabled
                     key={"txtUsername"}
                     value={userInfo?.userName}
+                    onChange={(event) => {handleInputValueChange("userName", event.target.value)}}
                   />
                 </FormDiv>
                 <FormDiv width={20}>
@@ -48,6 +62,7 @@ function App() {
                     disabled
                     key={"dataNascimento"}
                     value={userInfo?.birthDate}
+                    onChange={(event) => {handleInputValueChange("birthDate", event.target.value)}}
                   />
                 </FormDiv>
                 <FormDiv width={20}>
@@ -58,6 +73,7 @@ function App() {
                     disabled
                     key={"txtCPF"}
                     value={userInfo?.cpfNumber}
+                    onChange={(event) => {handleInputValueChange("cpfNumber", event.target.value)}}
                   />
                 </FormDiv>
               </FormRow>
@@ -71,6 +87,7 @@ function App() {
                     disabled
                     key={"txtPrimeiroNome"}
                     value={userInfo?.firstName}
+                    onChange={(event) => {handleInputValueChange("firstName", event.target.value)}}
                   />
                 </FormDiv>
                 <FormDiv width={30}>
@@ -81,6 +98,7 @@ function App() {
                     disabled
                     key={"txtSobrenome"}
                     value={userInfo?.lastName}
+                    onChange={(event) => {handleInputValueChange("lastName", event.target.value)}}
                   />
                 </FormDiv>
               </FormRow>
@@ -94,6 +112,7 @@ function App() {
                     disabled
                     key={"txtEmail"}
                     value={userInfo?.email}
+                    onChange={(event) => {handleInputValueChange("email", event.target.value)}}
                   />
                 </FormDiv>
                 <FormDiv width={30}>
@@ -105,6 +124,7 @@ function App() {
                     disabled
                     key={"txtCelular"}
                     value={userInfo?.phone}
+                    onChange={(event) => {handleInputValueChange("phone", event.target.value)}}
                   />
                 </FormDiv>
               </FormRow>
@@ -121,6 +141,7 @@ function App() {
                     label="CEP"
                     key={"txtCEP"}
                     value={userInfo?.cepNumber}
+                    onChange={(event) => {handleInputValueChange("cepNumber", event.target.value)}}
                   />
                 </FormDiv>
                 <FormDiv width={30}>
@@ -130,6 +151,7 @@ function App() {
                     label="Logradouro"
                     key={"txtLogradouro"}
                     value={userInfo?.street}
+                    onChange={(event) => {handleInputValueChange("street", event.target.value)}}
                   />
                 </FormDiv>
                 <FormDiv width={30}>
@@ -139,6 +161,7 @@ function App() {
                     label="Bairro"
                     key={"txtBairro"}
                     value={userInfo?.neighbourhood}
+                    onChange={(event) => {handleInputValueChange("neighbourhood", event.target.value)}}
                   />
                 </FormDiv>
                 <FormDiv width={10}>
@@ -149,6 +172,7 @@ function App() {
                     key={"txtNumero"}
                     type="number"
                     value={userInfo?.number}
+                    onChange={(event) => {handleInputValueChange("number", event.target.value)}}
                   />
                 </FormDiv>
               </FormRow>
@@ -160,6 +184,7 @@ function App() {
                     label="Complemento"
                     key={"txtComplemento"}
                     value={userInfo?.complement}
+                    onChange={(event) => {handleInputValueChange("complement", event.target.value)}}
                   />
                 </FormDiv>
                 <FormDiv width={30}>
@@ -169,6 +194,7 @@ function App() {
                     label="Cidade"
                     key={"txtCidade"}
                     value={userInfo?.city}
+                    onChange={(event) => {handleInputValueChange("city", event.target.value)}}
                   />
                 </FormDiv>
                 <FormDiv width={30}>
@@ -178,13 +204,14 @@ function App() {
                     label="Estado"
                     key={"txtEstado"}
                     value={userInfo?.state}
+                    onChange={(event) => {handleInputValueChange("state", event.target.value)}}
                   />
                 </FormDiv>
               </FormRow>
             </FormContent>
           </form>
 
-          <Button className="cst-confirm-button">
+          <Button className="cst-confirm-button" onClick={() => updateUserInfo()}>
             Alterar dados e salvar
           </Button>
         </FormContainer>
