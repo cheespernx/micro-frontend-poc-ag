@@ -12,7 +12,7 @@ export const InputContainer = styled.div<Props>`
 export const InputLabel = styled.label<Props>`
   position: absolute;
 
-  font-size: .65rem;
+  font-size: .60rem;
 
   padding: 0 0.25rem;
 
@@ -42,7 +42,7 @@ export const Input = styled.input`
   width: 100%;
   height: 100%;
 
-  font-size: 1rem;
+  font-size: .8rem;
 
   border: 1px solid #DADCE0;
   border-radius: 10px;
@@ -50,7 +50,7 @@ export const Input = styled.input`
   outline: none;
 
   padding: 1rem;
-  padding-left: 2rem;
+  padding-left: 1.7rem;
 
   background: none;
 
