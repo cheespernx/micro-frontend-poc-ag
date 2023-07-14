@@ -7,4 +7,7 @@ export const TitleContent = styled.div<Props>`
   font-weight: 400;
   font-size: 18px;
   text-transform: uppercase;
+  strong {
+    font-weight: 800;
+  }
 `
