@@ -24,7 +24,7 @@ export const InputLabel = styled.label<Props>`
   top: -.4rem;
   left: .4rem;
   
-  font-weight: 500;
+  font-weight: 600;
   z-index: 10;
 
   transition: 300ms;
@@ -66,5 +66,12 @@ export const Input = styled.input`
   &:focus + ${InputLabel} {
     color: #FF6600;
     transition: .3s;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+    &:focus + ${InputLabel} {
+      transform: translate(10px, 0);
+    }
   }
 `
