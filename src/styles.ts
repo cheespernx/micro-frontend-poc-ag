@@ -38,7 +38,7 @@ export const InnerFormRow = styled.div`
 export const FormDiv = styled.div<Props>`
   position: relative;
   height: 48px;
-  margin-right: 20px;
+  margin-right: 30px;
 
   width: ${(props) => (props.width+'%')};
 
