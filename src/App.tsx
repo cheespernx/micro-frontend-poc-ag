@@ -17,6 +17,7 @@ function App() {
     }
 
     if (data) setUserInfo(data);
+     console.log(data);
   });
 
   return (
