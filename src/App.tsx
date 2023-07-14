@@ -30,7 +30,7 @@ function App() {
 
             <FormContent>
               <FormRow>
-              <FormDiv width={20}>
+              <FormDiv width={30}>
                   <InputText
                     id="txtUsername"
                     name="txtUsername"
